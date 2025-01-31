@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-500 to-indigo-700 py-28 text-center text-white">
+    <div class="container mx-auto">
+        <h1 class="text-5xl font-extrabold leading-tight">Revolutionizing Digital Ads</h1>
+        <p class="text-xl mt-6">Enhance your brand’s reach with data-driven, AI-powered ad solutions.</p>
+        <a href="/services" class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 py-3 px-8 rounded-full text-lg font-semibold transition">Discover More</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-gray-900">
+    <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-semibold text-white mb-10">Our Features</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-2xl transition">
+                <h3 class="text-2xl font-semibold mb-4">AI-Driven Campaigns</h3>
+                <p class="text-gray-300">Leverage advanced machine learning to personalize campaigns and drive results.</p>
+            </div>
+            <div class="bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-2xl transition">
+                <h3 class="text-2xl font-semibold mb-4">Real-Time Analytics</h3>
+                <p class="text-gray-300">Track and optimize your campaigns instantly with powerful analytics tools.</p>
+            </div>
+            <div class="bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-2xl transition">
+                <h3 class="text-2xl font-semibold mb-4">Multi-Channel Reach</h3>
+                <p class="text-gray-300">Expand your reach across digital channels, including social media, websites, and more.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-20 bg-gradient-to-r from-indigo-700 to-purple-800">
+    <div class="container mx-auto text-center text-white">
+        <h2 class="text-4xl font-semibold mb-10">What Our Clients Say</h2>
+        <div class="flex flex-col lg:flex-row justify-center items-center space-x-0 lg:space-x-12">
+            <div class="max-w-md mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
+                <p class="text-lg text-gray-300">"AdsXpression transformed the way we run our ads. Our engagement has skyrocketed."</p>
+                <p class="mt-6 font-semibold">John Doe</p>
+                <p class="text-gray-500">CEO, Brand X</p>
+            </div>
+            <div class="max-w-md mx-auto bg-gray-900 p-8 rounded-lg shadow-lg mt-10 lg:mt-0">
+                <p class="text-lg text-gray-300">"The targeting capabilities are incredible! We saw a 40% increase in leads."</p>
+                <p class="mt-6 font-semibold">Jane Smith</p>
+                <p class="text-gray-500">Marketing Director, Company Y</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-20 text-center bg-gradient-to-r from-blue-500 to-indigo-600">
+    <h2 class="text-3xl font-semibold text-white">Ready to elevate your ad strategy?</h2>
+    <p class="text-gray-200 text-lg mt-4">Join us today and experience the future of advertising.</p>
+    <a href="/contact" class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 py-3 px-8 rounded-full text-lg font-semibold text-white transition">Contact Us</a>
+</section>
+{% endblock %}
