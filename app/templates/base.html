@@ -1,56 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AdsXpression | Your Digital Ad Partner</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdsXpression</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #F9FAFB;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    nav {
+  background-color: #ffffff;
+  color: #333;
+  width: 100%;
+  z-index: 50;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .nav-links a {
+      margin-left: 2rem;
+      font-weight: bold;
+      color: #2C5282;
+    }
+
+    .nav-actions button {
+      margin-left: 1rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      border: none;
+      outline: none;
+    }
+
+    .nav-actions .btn-primary {
+      background-color: #2C5282;
+      color: white;
+    }
+
+    .nav-actions .btn-primary:hover {
+      background-color: #1A365D;
+    }
+
+    .nav-actions .btn-outline {
+      border: 2px solid #2C5282;
+      color: #2C5282;
+      background-color: transparent;
+    }
+
+    .nav-actions .btn-outline:hover {
+      background-color: #2C5282;
+      color: white;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 8rem 1rem;
+      text-align: center;
+      background: linear-gradient(to right, #EBF4FF, white);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #2C5282;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero .btn-group button {
+      margin: 0 0.5rem;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+    }
+
+    /* Feature Section */
+    .features {
+      padding: 4rem 1rem;
+      background-color: #ffffff;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #2C5282;
+      margin-bottom: 2rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 2rem;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-0.25rem);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background-color: #EBF4FF;
+      color: #2C5282;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Why Choose Section */
+    .why-choose {
+      padding: 4rem 1rem;
+      background-color: #ffffff;
+    }
+
+    .why-choose h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #2C5282;
+      margin-bottom: 2rem;
+    }
+
+    .why-choose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .why-choose-item {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .why-choose-item i {
+      font-size: 2.5rem;
+      color: #2C5282;
+      margin-bottom: 1rem;
+    }
+
+    .why-choose-item h3 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 4rem 1rem;
+      background-color: #ffffff;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #2C5282;
+      margin-bottom: 2rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-item {
+      padding: 2rem;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .testimonial-item p {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-item .author {
+      font-weight: bold;
+    }
+
+    .testimonial-item .role {
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 4rem 1rem;
+      background: linear-gradient(to right, #EBF4FF, white);
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      color: #2C5282;
+      margin-bottom: 1rem;
+    }
+
+    .cta p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta button {
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      background-color: #2C5282;
+      color: white;
+      border: none;
+      border-radius: 9999px;
+    }
+
+    .cta button:hover {
+      background-color: #1A365D;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #2C5282;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+  </style>
 </head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <span class="text-2xl font-bold text-blue-800">AdsXpression</span>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">How It Works</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-primary">Sign In</button>
+        <button class="btn-outline">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+{% block body %}
+    
+{% endblock %}
 
-<body class="bg-gray-900 text-white">
-    <!-- Navbar -->
-    <header class="bg-gradient-to-r from-blue-600 to-indigo-800 shadow-lg py-5">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-4xl font-bold text-blue-400">AdsXpression</a>
-            <nav>
-                <ul class="flex space-x-8 text-lg font-semibold">
-                    <li><a href="/" class="hover:text-blue-300 transition">Home</a></li>
-                    <li><a href="/about" class="hover:text-blue-300 transition">About</a></li>
-                    <li><a href="/services" class="hover:text-blue-300 transition">Services</a></li>
-                    <li><a href="/contact" class="hover:text-blue-300 transition">Contact</a></li>
-                    <li><a href="/login" class="text-blue-300 hover:text-white transition">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="py-20">
-        {% block content %}
-        <!-- Dynamic content goes here -->
-        {% endblock %}
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gradient-to-l from-indigo-800 to-blue-600 py-8 mt-20">
-        <div class="container mx-auto text-center">
-            <p class="text-gray-300">&copy; 2025 AdsXpression. All Rights Reserved.</p>
-            <div class="mt-4">
-                <a href="https://twitter.com/AdsXpression" class="mx-2 text-blue-400 hover:text-white">Twitter</a>
-                <a href="https://linkedin.com/company/AdsXpression" class="mx-2 text-blue-400 hover:text-white">LinkedIn</a>
-                <a href="https://facebook.com/AdsXpression" class="mx-2 text-blue-400 hover:text-white">Facebook</a>
-            </div>
-        </div>
-    </footer>
+<footer>
+    <p>&copy; 2025 AdsXpression. All rights reserved.</p>
+  </footer>
 </body>
-
 </html>

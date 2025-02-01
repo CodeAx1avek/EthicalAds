@@ -1,6 +1,6 @@
-
-        <h1>AdsXpression</h1>
-        <!-- Search Section -->
+{% extends 'base.html' %}
+{% block body %}
+<h1>AdsXpression</h1>
         <div class="search-wrapper">
             <form id="searchForm">
                 <div class="search-container">
@@ -17,46 +17,31 @@
                 
             </form>
         </div>
-
-        <!-- Results Sections -->
         <div class="images-container" id="imagesContainer">
             <h3>Image Results Insights</h3>
             <div class="images-scroll"></div>
         </div>
-
         <div id="youtubeAnalysis" class="results-section">
             <h3>YouTube Video Insights</h3>
             <div class="video-container"></div>
         </div>
-
-        <div id="trendGraph" class="graph-section">
-            <h3>Trend Analysis Insights</h3>
-            <canvas id="trendChart"></canvas>
-        </div>
-
         <div id="sentimentAnalysis" class="results-section">
             <h3>Sentiment Analysis Insights</h3>
         </div>
-
         <div id="newsResults" class="results-section">
             <h3>News Results</h3>
         </div>
-
         <div id="redditResults" class="results-section">
             <h3>Reddit Insights</h3>
         </div>
-
         <div id="mediaGallery" class="media-section">
             <h3>Visual StoryBoard</h3>
             <div class="images-gallery"></div>
         </div>
-
-
-
-        
-
-        
-    
+        <div id="trendGraph" class="graph-section">
+            <h3>Trend Analysis Insights</h3>
+            <canvas id="trendChart"></canvas>
+        </div>
 </body>
 </html>
 <style>
@@ -168,11 +153,9 @@ button:hover {
     cursor: pointer;
     color: var(--text-secondary);
 }
-
 .checkbox-container input {
     display: none;
 }
-
 .checkmark {
     width: 24px;
     height: 24px;
@@ -182,7 +165,6 @@ button:hover {
     border-radius: 8px;
     background-color: rgba(17, 17, 17, 0.4);
 }
-
 .checkbox-container input:checked + .checkmark:after {
     content: '\2714';
     position: absolute;
@@ -219,8 +201,6 @@ button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 30px rgba(37, 99, 235, 0.4);
 }
-
-/* Common Container Styles */
 .images-container,
 .results-section,
 .rresults-section,
@@ -236,8 +216,6 @@ button:hover {
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
 }
-
-/* Hover effects for containers */
 .images-container:hover,
 .results-section:hover,
 .summary-container:hover,
@@ -246,8 +224,6 @@ button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 30px rgba(37, 99, 235, 0.2);
 }
-
-/* Common Header Styles */
 h3 {
     margin-bottom: 20px;
     font-size: 1.5em;
@@ -256,8 +232,6 @@ h3 {
     color: var(--text);
     font-weight: 600;
 }
-
-/* Images Section Styles */
 .images-scroll, .images-gallery {
     display: flex;
     overflow-x: auto;
@@ -533,15 +507,12 @@ const API = {
         return response.json();
     }
 };
-
-// Component-specific functions
 const Components = {
     async fetchGoogleResults(query) {
         const container = document.getElementById('googleResults');
         container.innerHTML = '<h3>Google Analysis</h3><p>Loading...</p>';
     
         try {
-            // Step 1: Scrape data using ScraperAPI
             const scrapeResponse = await fetch(
                 `https://api.scraperapi.com?api_key=${CONFIG.gSCRAPER_API_KEY}&url=https://www.google.com/search?q=${encodeURIComponent(query)}`
             );
@@ -551,8 +522,6 @@ const Components = {
             }
     
             const scrapedData = await scrapeResponse.text();
-    
-            // Step 2: Parse the scraped data
             const parser = new DOMParser();
             const doc = parser.parseFromString(scrapedData, 'text/html');
             const results = Array.from(doc.querySelectorAll('.tF2Cxc')).map(result => ({
@@ -564,27 +533,17 @@ const Components = {
             if (results.length === 0) {
                 throw new Error('No valid results found from the scraped data.');
             }
-    
-            // Step 3: Prepare a prompt for Groq API
             const context = `
-                Provide a security-focused summary based on the following data regarding the recent cyber attack:
-                - Analyze the affected organizations and provide an overview of their vulnerabilities and responses.
-                - Suggest cybersecurity strategies and defense mechanisms based on the data.
-                - Include dummy estimates for attack impact, recovery times, and financial losses where direct data is unavailable.
-                - Structure the summary hierarchically in a bit-wise format for easier readability and actionable insights:
-                    - Affected Organizations
-                        - Organization Name
-                        - Vulnerabilities Exploited (if available, otherwise estimate)
-                        - Response and Recovery Efforts
-                    - Cybersecurity Opportunities
-                        - Strengths to Enhance (e.g., strong encryption, rapid response teams)
-                        - Weaknesses to Address (e.g., outdated software, lack of employee training)
-                        - Security Recommendations
-                        - Recovery Plan Recommendations
-            `;
-
-    
-            // Step 4: Summarize data using Groq API
+    Provide a summary focused on AI-driven personalized advertising:
+    - Analyze the challenges marketers face with audience targeting using AI based on browsing behavior.
+    - Highlight privacy concerns and the balance between personalized ads and user consent.
+    - Suggest strategies for improving data security and respecting user privacy in personalized advertising.
+    - Include any estimates for potential risks and impacts where data is unavailable.
+    - Structure the summary in a clear, actionable format:
+        - Marketing Challenges
+        - Privacy and Consent Issues
+        - Security and Privacy Recommendations
+`;
             const summaryResponse = await fetch("https://api.groq.com/openai/v1/chat/completions", {
                 method: 'POST',
                 headers: {
@@ -620,12 +579,8 @@ const Components = {
             `;
         }
     },
-    
-    // Updated display component for structured data
     displayGoogleResults(results, summary) {
         const container = document.getElementById('googleResults');
-    
-        // Ensure everything is structured and stays inside the container
         container.innerHTML = `
             <div>
                 <h3>Google Analysis Summary</h3>
@@ -654,37 +609,32 @@ const Components = {
             </div>
         `;
     },    
-    
     async fetchRedditInsights(query) {
         const container = document.getElementById('redditResults');
         container.innerHTML = '<h3>Reddit Insights</h3><p>Loading...</p>';
     
         try {
-            // Prepare the context for Groq to generate Reddit-style analysis
             const context = `
-                You are an expert at analyzing Reddit discussions. For the given query related to a cybersecurity incident, generate a comprehensive analysis that includes:
-                
-                1. First, create 4-5 example Reddit posts/comments that would be typical for this topic, including:
-                   - Post titles with realistic engagement numbers (upvotes, comments)
-                   - Top comments and responses
-                   - Subreddit names where these discussions would occur (e.g., r/cybersecurity, r/technology, r/AskNetsec)
-                
-                2. Then provide a detailed analysis including:
-                   - Key discussion trends across Reddit communities (e.g., common security concerns, new attack vectors)
-                   - Common user sentiments and opinions (e.g., fear, frustration, optimism about new defenses)
-                   - Cybersecurity product/service opportunities mentioned in discussions (e.g., software solutions, threat intelligence platforms)
-                   - Challenges or complaints frequently raised (e.g., ineffective security patches, lack of awareness)
-                   - Notable debates or controversies (e.g., ethical implications of certain cybersecurity practices, privacy concerns)
-                   - Popular feature requests or suggestions (e.g., more intuitive firewalls, better phishing protection tools)
-                
-                Structure the analysis with clear sections and bullet points.
-                Make the Reddit examples feel authentic by including typical Reddit language, awards, and interaction patterns (e.g., "Top comment", "Awarded Gold").
-                
-                Format everything in HTML with appropriate classes for styling.
-            `;
-
+    You are an expert at analyzing discussions on marketing and privacy in online forums. For the given query related to AI-driven personalized ads, generate a comprehensive analysis that includes:
     
-            // Get analysis from Groq API
+    1. First, create 4-5 example forum posts/comments that would be typical for this topic, including:
+       - Post titles with realistic engagement numbers (likes, comments)
+       - Top comments and responses
+       - Forum names where these discussions would occur (e.g., r/marketing, r/privacy, r/advertising)
+    
+    2. Then provide a detailed analysis including:
+       - Key discussion trends across online communities (e.g., concerns about data collection, benefits of personalized ads)
+       - Common user sentiments and opinions (e.g., concerns about privacy, excitement for tailored content)
+       - Advertising technology/product opportunities mentioned in discussions (e.g., AI-driven ad solutions, user consent management tools)
+       - Challenges or complaints frequently raised (e.g., data misuse, opt-out options)
+       - Notable debates or controversies (e.g., ethical issues with personalized ads, transparency)
+       - Popular feature requests or suggestions (e.g., better user consent features, clearer privacy policies)
+    
+    Structure the analysis with clear sections and bullet points.
+    Make the forum examples feel authentic by including typical online language and interaction patterns (e.g., "Top comment", "Upvoted").
+    
+    Format everything in HTML with appropriate classes for styling.
+`;
             const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
                 method: 'POST',
                 headers: {
@@ -765,62 +715,61 @@ const Components = {
                     {
     role: "system",
     content: `
-        Generate comprehensive cybersecurity Awareness analysis data for visualization. Include:
-        1. Historic trend data on cyber attack incidents, defenses, and cybersecurity trends
-        2. Awareness share distribution of cybersecurity companies and solutions
-        3. User sentiment distribution related to cybersecurity solutions and incidents
-        4. Regional distribution of cybersecurity incidents and solutions
-        5. Age group distribution of users' cybersecurity awareness or behavior
-        6. Price point distribution for cybersecurity products and services
-        
-        Format response as JSON with:
-        {
-            "historicTrend": {
-                "title": "Cybersecurity Incident Trends",
-                "labels": ["Jan", "Feb", "Mar", ...],
-                "datasets": [
-                    {
-                        "label": "Cyber Attacks",
-                        "data": [number, ...]
-                    },
-                    {
-                        "label": "Cybersecurity Solutions Adoption",
-                        "data": [number, ...]
-                    }
-                ]
-            },
-            "marketShare": {
-                "title": "Cybersecurity Market Share",
-                "labels": ["Company1", "Company2", "Company3", ...],
-                "data": [number, ...]
-            },
-            "sentiment": {
-                "title": "User Sentiment on Cybersecurity",
-                "labels": ["Positive", "Neutral", "Negative"],
-                "data": [number, ...]
-            },
-            "regional": {
-                "title": "Regional Distribution of Cybersecurity Incidents",
-                "labels": ["North America", "Europe", "Asia", ...],
-                "data": [number, ...]
-            },
-            "demographics": {
-                "title": "Age Group Distribution of Cybersecurity Awareness",
-                "labels": ["18-25", "26-35", "36-45", "46-60", "60+"],
-                "data": [number, ...]
-            },
-            "priceDistribution": {
-                "title": "Price Point Distribution for Cybersecurity Products",
-                "labels": ["Low", "Mid", "High"],
-                "data": [number, ...]
-            }
-        }`
+    Generate comprehensive analysis data for visualizing trends and awareness related to AI-driven personalized ads and privacy concerns. Include:
+    1. Historic trend data on AI-driven ad incidents, privacy concerns, and trends in advertising technology.
+    2. Awareness share distribution of companies offering AI-driven advertising solutions and privacy protection services.
+    3. User sentiment distribution related to AI-driven personalized ads and privacy issues.
+    4. Regional distribution of AI-driven ad incidents and privacy breaches.
+    5. Age group distribution of users' awareness or behavior toward personalized ads and privacy.
+    6. Price point distribution for AI-driven advertising products and privacy-related services.
+
+    Format response as JSON with:
+    {
+        "historicTrend": {
+            "title": "AI-Driven Ad Trends",
+            "labels": ["Jan", "Feb", "Mar", ...],
+            "datasets": [
+                {
+                    "label": "Personalized Ads Impact",
+                    "data": [number, ...]
+                },
+                {
+                    "label": "Privacy Concerns",
+                    "data": [number, ...]
+                }
+            ]
+        },
+        "marketShare": {
+            "title": "AI Advertising Market Share",
+            "labels": ["Company1", "Company2", "Company3", ...],
+            "data": [number, ...]
+        },
+        "sentiment": {
+            "title": "User Sentiment on Personalized Ads",
+            "labels": ["Positive", "Neutral", "Negative"],
+            "data": [number, ...]
+        },
+        "regional": {
+            "title": "Regional Distribution of Ad and Privacy Incidents",
+            "labels": ["North America", "Europe", "Asia", ...],
+            "data": [number, ...]
+        },
+        "demographics": {
+            "title": "Age Group Distribution of Ad Awareness",
+            "labels": ["18-25", "26-35", "36-45", "46-60", "60+"],
+            "data": [number, ...]
+        },
+        "priceDistribution": {
+            "title": "Price Point Distribution for AI Advertising Products",
+            "labels": ["Low", "Mid", "High"],
+            "data": [number, ...]
+        }
+    }`
 },
 {
     role: "user",
-    content: `Generate Awareness analysis visualization data for cybersecurity products and solutions`
+    content: `Generate awareness analysis visualization data for AI-driven personalized ads and privacy concerns.`
 }
-
                     ],
                     temperature: 0.7,
                     response_format: { type: "json_object" }
@@ -858,8 +807,6 @@ const Components = {
                     </div>
                 </div>
             `;
-    
-            // Add CSS for the new layout
             const style = document.createElement('style');
             style.textContent = `
                 .charts-grid {
@@ -1255,20 +1202,17 @@ const Components = {
         try {
             // Prepare the context for sentiment analysis
             const context = `
-                Analyze the public sentiment and security insights regarding the given cyber attack. 
-                Structure your response as follows:
-                1. Attack Impact Assessment: Provide a clear severity rating (high/medium/low) along with key metrics (e.g., data stolen, affected organizations)
-                2. Key Factors Contributing to the Attack: List main vulnerabilities exploited or techniques used by the attackers (e.g., phishing, ransomware)
-                3. Public Response & Awareness: Analyze how the public and organizations are responding to the attack (e.g., media coverage, corporate response)
-                4. Affected Entities: Identify major victims of the attack (e.g., companies, government agencies, sectors)
-                5. Recommendations: Suggest actions to mitigate similar future cyber attacks (e.g., enhanced security protocols, awareness campaigns)
-                
-                Format the response in a clean, HTML-friendly structure with appropriate headings and sections.
-                Include specific percentages, timelines, and any notable metrics (e.g., recovery times, financial losses) where relevant.
-            `;
-
+    Analyze the public sentiment and security insights regarding the impact of AI-driven personalized ads, focusing on privacy concerns. 
+    Structure your response as follows:
+    1. Impact Assessment: Provide a clear severity rating (high/medium/low) along with key metrics (e.g., user data collected, affected platforms).
+    2. Key Factors Contributing to Privacy Issues: List main concerns related to AI-driven ads (e.g., unauthorized data collection, lack of user consent).
+    3. Public Response & Awareness: Analyze how users and organizations are responding to the issue (e.g., public backlash, corporate transparency efforts).
+    4. Affected Entities: Identify major victims or platforms involved in the AI-driven ad controversy (e.g., social media platforms, ad-tech companies, governments).
+    5. Recommendations: Suggest actions to mitigate privacy risks in AI-driven advertising (e.g., stronger privacy policies, user consent management, transparency in data usage).
     
-            // Get sentiment analysis from Groq API
+    Format the response in a clean, HTML-friendly structure with appropriate headings and sections.
+    Include specific percentages, timelines, and any notable metrics (e.g., user sentiment, financial losses, regulatory actions) where relevant.
+`;
             const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
                 method: 'POST',
                 headers: {
@@ -1329,11 +1273,10 @@ const Components = {
                     messages: [
                     {
     role: "system",
-    content: "You are an Awareness expert. Create 4 clear, detailed image prompts for SDXL image generation related to cybersecurity products and services."
-},
+    content: `You are an Awareness expert. Create 4 clear, detailed image prompts for SDXL image generation related to cybersecurity products and services. The prompts should focus on showcasing visual representations of AI-driven personalized advertisements and privacy protection solutions. Each prompt should highlight an aspect of your problem statement, such as using AI for targeted ads based on browsing behavior, addressing privacy concerns, or ensuring a balance between personalization and user consent. The imagery should convey security, modern technology, and the challenges in balancing privacy with targeted marketing.`},
 {
     role: "user",
-    content: `Generate 4 different Ads image prompts for cybersecurity. Each prompt should be self-contained and focus on different aspects.`
+    content: `Generate 4 different Ads image prompts for Ads. Each prompt should be self-contained and focus on a different aspect of AI-driven personalized marketing. The prompts should highlight various aspects such as AI-powered targeted advertising, data privacy, user consent, and secure personalization. Each ad should use modern, vibrant, and professional imagery aligned with the concept of balancing effective marketing and user privacy protection.`
 }
 
                     ],
@@ -1558,7 +1501,6 @@ async function handleNewsSearch(query) {
         container.innerHTML = '<p class="error">Failed to load news</p>';
     }
 }
-
 async function generateSummary(query) {
     const container = document.getElementById("summary");
     try {
@@ -1571,7 +1513,6 @@ async function generateSummary(query) {
         container.innerHTML = '<p class="error">Failed to generate summary</p>';
     }
 }
-
 async function handleSearch(e) {
     e.preventDefault();
     const query = document.getElementById("searchInput").value;
@@ -1580,8 +1521,6 @@ async function handleSearch(e) {
     try {
         const isOnline = await API.checkConnection();
         if (!isOnline) throw new Error('No internet connection');
-
-        // Execute all component updates concurrently
         await Promise.all([
             Components.fetchGoogleResults(query),
             Components.fetchRedditInsights(query),
@@ -1592,16 +1531,12 @@ async function handleSearch(e) {
             showImages && handleImageSearch(query),
             handleNewsSearch(query)
         ]);
-
-        // Generate summary after all data is collected
         await generateSummary(query);
 
     } catch (error) {
         displayError(error);
     }
 }
-
-// Setup UI
 function setupUI() {
     const searchForm = document.getElementById("searchForm");
     const searchInput = document.getElementById("searchInput");
@@ -1612,15 +1547,9 @@ function setupUI() {
 
     searchForm.addEventListener("submit", handleSearch);
 }
-
-// Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", setupUI);
 </script>
-
-
-
 <script>
-
 const CONFIG = {
     GOOGLE_API_KEY: 'AIzaSyAIGXhKjNDb3W1y300QkfSH-LNj0CdAQXI',  
     GOOGLE_SEARCH_ENGINE_ID: 'a4f59f638ac904644',  
@@ -1638,3 +1567,4 @@ const CONFIG = {
     YOUTUBE_API_KEY:'AIzaSyDyAXZysjJaksK30F6YUbt-XxehdEzFGkQ'
 };
 </script>
+{% endblock %}

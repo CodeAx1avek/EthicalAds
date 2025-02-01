@@ -1,59 +1,100 @@
 {% extends 'base.html' %}
+{% block body %}
+<main>
+    <section class="hero">
+      <h1>AdsXpression: Personalized Ads That Match Your Interests</h1>
+      <p>We use AI to analyze your browsing habits and deliver ads tailored just for you.</p>
+      <div class="btn-group">
+        <button class="btn-primary">Get Started</button>
+        <button class="btn-outline">Learn More</button>
+      </div>
+    </section>
 
-{% block content %}
-<!-- Hero Section -->
-<section class="bg-gradient-to-r from-blue-500 to-indigo-700 py-28 text-center text-white">
-    <div class="container mx-auto">
-        <h1 class="text-5xl font-extrabold leading-tight">Revolutionizing Digital Ads</h1>
-        <p class="text-xl mt-6">Enhance your brand’s reach with data-driven, AI-powered ad solutions.</p>
-        <a href="/services" class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 py-3 px-8 rounded-full text-lg font-semibold transition">Discover More</a>
-    </div>
-</section>
-
-<!-- Features Section -->
-<section class="py-20 bg-gray-900">
-    <div class="container mx-auto text-center">
-        <h2 class="text-4xl font-semibold text-white mb-10">Our Features</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div class="bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-2xl transition">
-                <h3 class="text-2xl font-semibold mb-4">AI-Driven Campaigns</h3>
-                <p class="text-gray-300">Leverage advanced machine learning to personalize campaigns and drive results.</p>
-            </div>
-            <div class="bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-2xl transition">
-                <h3 class="text-2xl font-semibold mb-4">Real-Time Analytics</h3>
-                <p class="text-gray-300">Track and optimize your campaigns instantly with powerful analytics tools.</p>
-            </div>
-            <div class="bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-2xl transition">
-                <h3 class="text-2xl font-semibold mb-4">Multi-Channel Reach</h3>
-                <p class="text-gray-300">Expand your reach across digital channels, including social media, websites, and more.</p>
-            </div>
+    <section class="features">
+      <h2>How AdsXpression Works</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <h3 class="feature-title">Sign Up & Set Preferences</h3>
+          <p>Create your account and tell us your interests for better targeting.</p>
         </div>
-    </div>
-</section>
-
-<!-- Testimonials Section -->
-<section class="py-20 bg-gradient-to-r from-indigo-700 to-purple-800">
-    <div class="container mx-auto text-center text-white">
-        <h2 class="text-4xl font-semibold mb-10">What Our Clients Say</h2>
-        <div class="flex flex-col lg:flex-row justify-center items-center space-x-0 lg:space-x-12">
-            <div class="max-w-md mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
-                <p class="text-lg text-gray-300">"AdsXpression transformed the way we run our ads. Our engagement has skyrocketed."</p>
-                <p class="mt-6 font-semibold">John Doe</p>
-                <p class="text-gray-500">CEO, Brand X</p>
-            </div>
-            <div class="max-w-md mx-auto bg-gray-900 p-8 rounded-lg shadow-lg mt-10 lg:mt-0">
-                <p class="text-lg text-gray-300">"The targeting capabilities are incredible! We saw a 40% increase in leads."</p>
-                <p class="mt-6 font-semibold">Jane Smith</p>
-                <p class="text-gray-500">Marketing Director, Company Y</p>
-            </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="feature-title">Smart Analysis</h3>
+          <p>Our AI learns from your online behavior to understand what matters to you.</p>
         </div>
-    </div>
-</section>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-magic"></i>
+          </div>
+          <h3 class="feature-title">Personalized Experience</h3>
+          <p>Get matched with ads that align with your lifestyle and preferences.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="feature-title">Privacy First</h3>
+          <p>Your data is encrypted and you control what information you share.</p>
+        </div>
+      </div>
+    </section>
 
-<!-- Call to Action Section -->
-<section class="py-20 text-center bg-gradient-to-r from-blue-500 to-indigo-600">
-    <h2 class="text-3xl font-semibold text-white">Ready to elevate your ad strategy?</h2>
-    <p class="text-gray-200 text-lg mt-4">Join us today and experience the future of advertising.</p>
-    <a href="/contact" class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 py-3 px-8 rounded-full text-lg font-semibold text-white transition">Contact Us</a>
-</section>
-{% endblock %}
+    <section class="why-choose">
+      <h2>Why Choose AdsXpression?</h2>
+      <div class="why-choose-grid">
+        <div class="why-choose-item">
+          <i class="fas fa-bullseye"></i>
+          <h3>Relevant Ads</h3>
+          <p>No more irrelevant ads cluttering your screen.</p>
+        </div>
+        <div class="why-choose-item">
+          <i class="fas fa-clock"></i>
+          <h3>Time-Saving</h3>
+          <p>Find products and services faster.</p>
+        </div>
+        <div class="why-choose-item">
+          <i class="fas fa-lock"></i>
+          <h3>Secure & Private</h3>
+          <p>Your data is encrypted and protected.</p>
+        </div>
+        <div class="why-choose-item">
+          <i class="fas fa-sliders-h"></i>
+          <h3>Customizable</h3>
+          <p>Adjust your preferences anytime.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <h2>What Our Users Say About AdsXpression</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-item">
+          <p>"AdsXpression revolutionized how I interact with online ads."</p>
+          <p class="author">John Smith</p>
+          <p class="role">Digital Marketer</p>
+        </div>
+        <div class="testimonial-item">
+          <p>"The personalization accuracy is remarkable."</p>
+          <p class="author">Sarah Johnson</p>
+          <p class="role">E-commerce Owner</p>
+        </div>
+        <div class="testimonial-item">
+          <p>"Finally, ads that understand what I'm looking for."</p>
+          <p class="author">Mike Wilson</p>
+          <p class="role">Tech Enthusiast</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Ready to Get Started with AdsXpression?</h2>
+      <p>Join thousands of users who enjoy personalized ads tailored to their needs.</p>
+      <button>Sign Up Now</button>
+    </section>
+  </main>
+  {% endblock %}
