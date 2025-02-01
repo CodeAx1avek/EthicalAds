@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-import openai
 import requests
 
 def home(request):
